@@ -19,6 +19,7 @@ class QamlaJobService extends BaseService
 
     public function searchJob($key)
     {
+        // search by key
         return QamlaJob::whereHas('title', fn ($query) => $query
                 ->where('title', 'like', "%$key%"))
                 ->with('title')

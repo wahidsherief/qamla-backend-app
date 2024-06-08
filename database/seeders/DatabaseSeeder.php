@@ -24,5 +24,9 @@ class DatabaseSeeder extends Seeder
         $this->call(QamlaJobTitlesTableSeeder::class);
         $this->call(EmployersTableSeeder::class);
         $this->call(CandidateDataSeeder::class);
+        $this->call(QamlaJobCategoriesTableSeeder::class);
+        $this->call(QamlaJobTypesTableSeeder::class);
+        $this->call(SkillsTableSeeder::class);
+        $this->call(LanguagesTableSeeder::class);
     }
 }

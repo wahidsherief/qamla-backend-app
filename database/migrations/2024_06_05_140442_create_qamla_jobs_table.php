@@ -13,8 +13,9 @@ return new class () extends Migration {
         Schema::create('qamla_jobs', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('employer_id');
-            $table->string('qamla_job_category_id');
-            $table->string('qamla_job_title_id');
+            $table->integer('qamla_job_type_id');
+            $table->integer('qamla_job_category_id');
+            $table->integer('qamla_job_title_id');
             $table->date('deadline');
             $table->decimal('min_salary', 10, 2)->nullable();
             $table->decimal('max_salary', 10, 2)->nullable();

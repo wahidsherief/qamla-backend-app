@@ -17,13 +17,43 @@ class QamlaJobService extends BaseService
         return $this->all(new QamlaJobTitle());
     }
 
-    public function searchJob($key)
+    public function searchJob($request)
     {
-        // search by key
-        return QamlaJob::whereHas('title', fn ($query) => $query
-                ->where('title', 'like', "%$key%"))
-                ->with('title')
-                ->get();
+        $query = QamlaJob::query();
+
+        // Filter by job title
+        if ($request->has('title')) {
+            $query->whereHas('title', function ($q) use ($request) {
+                $q->where('title', 'like', '%' . $request->title . '%');
+            });
+        }
+
+        // Filter by job types
+        if ($request->has('type_id')) {
+            // return $request->type_id;
+            $query->where('qamla_job_type_id', $request->type_id);
+        }
+
+        // Filter by category
+        if ($request->has('category_id')) {
+            $query->where('qamla_job_category_id', $request->category_id);
+        }
+
+        // Filter by salary range
+        if ($request->has('minsalary')) {
+            $query->where('min_salary', '>=', $request->minsalary);
+        }
+        if ($request->has('maxsalary')) {
+            $query->where('max_salary', '<=', $request->maxsalary);
+        }
+
+        // Filter by date posted (days ago)
+        if ($request->has('dayago')) {
+            $date = Carbon::now()->subDays($request->dayago);
+            $query->where('created_at', '>=', $date);
+        }
+
+        return $query->with(['title', 'category', 'type'])->get();
     }
 
     public function saveJob($request)

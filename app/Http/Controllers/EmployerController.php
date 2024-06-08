@@ -39,7 +39,7 @@ class EmployerController extends Controller
 
     public function searchJob(Request $request)
     {
-        $results = $this->qamlaJobService->searchJob($request->key);
+        $results = $this->qamlaJobService->searchJob($request);
 
         if (!$results) {
             return errorResponse('Job search failed !');

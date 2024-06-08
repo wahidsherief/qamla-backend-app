@@ -10,10 +10,9 @@ return new class () extends Migration {
      */
     public function up(): void
     {
-        Schema::create('qamla_job_categories', function (Blueprint $table) {
+        Schema::create('qamla_job_types', function (Blueprint $table) {
             $table->id();
-            $table->string('title', 255)->unique();
-            $table->boolean('is_deleted')->default(false);
+            $table->enum('title', ['on-site', 'remote', 'hybrid']);
         });
     }
 
@@ -22,6 +21,6 @@ return new class () extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('qamla_job_categories');
+        Schema::dropIfExists('qamla_job_types');
     }
 };

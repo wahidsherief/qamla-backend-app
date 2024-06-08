@@ -20,6 +20,7 @@ class QamlaJobsTableSeeder extends Seeder
         for ($i = 1; $i <= 20; $i++) {
             $jobs[] = [
                 'employer_id' => rand(1, 5),
+                'qamla_job_type_id' => rand(1, 3),
                 'qamla_job_category_id' => rand(1, 5),
                 'qamla_job_title_id' => rand(1, 20),
                 'deadline' => Carbon::now()->addDays(rand(10, 60)),

@@ -35,7 +35,7 @@ Route::group(['prefix' => 'employer'], function ($router) {
         Route::post('/logout', 'logout');
         Route::get('/jobs', 'getJobs');
         Route::get('/job/titles', 'getJobTitles');
-        Route::post('/job/search', 'searchJob');
+        Route::get('/job/search', 'searchJob');
         Route::post('/job/save', 'saveJob');
         Route::put('/job/update/{id}', 'updateJob');
         Route::delete('/job/delete/{id}', 'deleteJob');

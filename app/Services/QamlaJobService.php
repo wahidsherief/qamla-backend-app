@@ -49,7 +49,7 @@ class QamlaJobService extends BaseService
 
         // Filter by date posted (days ago)
         if ($request->has('dayago')) {
-            $date = Carbon::now()->subDays($request->dayago);
+            $date = now()->subDays($request->dayago);
             $query->where('created_at', '>=', $date);
         }
 
